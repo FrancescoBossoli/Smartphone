@@ -1,28 +1,7 @@
 {
   "users": [
-    {
-      "tariffa": 0.2,
-      "credito": 8,
-      "numeroChiamate": 0,
-      "name": "FirstUser",
-      "id": 1,
-      "phoneNumber": 3425581322
-    },
-    {
-      "tariffa": 0.2,
-      "credito": 10,
-      "numeroChiamate": 0,
-      "name": "SecondUser",
-      "id": 2,
-      "phoneNumber": 3497236115
-    },
-    {
-      "tariffa": 0.2,
-      "credito": 6,
-      "numeroChiamate": 0,
-      "name": "ThirdUser",
-      "id": 3,
-      "phoneNumber": 3485820052
+    {      
+      "id": 404
     }
   ]
 }

@@ -465,3 +465,7 @@ body {
 #time {
     font-size: 42px;
 }
+
+#logo {
+    border: 2px solid #ad8080;
+}
