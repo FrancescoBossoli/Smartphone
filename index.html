@@ -116,6 +116,14 @@
                             </div>
                         </div>
                     </div>
+                    <div id="dialerCalls">
+                        <div class="calls">
+                            <h2>Chiamate effettuate: <span id="totalCalls"></span> <span onclick="removeCalls()"> <i id="trash" class="fa fa-trash" ></i></span></h2>
+                        </div>
+                    </div>
+                    <div id="dialerContacts">
+
+                    </div>
                     <div class="row">
                         <div class="menu-wrapper">
                             <label for="phoneDialer">Tastiera</label>
@@ -135,12 +143,12 @@
                         </div>
                         <div class="user">
                             <div class="details">
-                                <h3 id="username">Tizio</h3>
-                                <h3 id="phoneNumber">3333333333</h3>
+                                <h3 id="username"></h3>
+                                <h3 id="phoneNumber"></h3>
                             </div>
-                            <div class="switch">
-                                <i class="fa fa-sim-card" ></i>
-                            </div>
+                            <a class="switch" href="#changeIdModal">
+                                <i class="fa fa-sim-card" id="simCard"></i>
+                            </a>
                         </div>
                     </div>
                     <div class="tariffa"><b>Piano tariffario corrente:</b> <br><small>Chiamate a 20 centesimi al minuto</small> </div>
@@ -160,6 +168,32 @@
                                     <div class="charge" onclick="recharge(10)">10€</div>
                                     <div class="charge" onclick="recharge(15)">15€</div>        
                                     <div class="charge" onclick="recharge(25)">25€</div>
+                                </div> 
+                                <a href="#" class="modalCloseBtn">&times;</a>
+                            </div>
+                        </div>
+                        <div id="changeIdModal" class="modal">
+                            <div class="modalContent">
+                                <h3>Quale scheda vuoi utilizzare?</h3>
+                                <div id="simOptions">
+                                    <input type="radio" class="userRadio" name="loggedUser" id="user1" checked>
+                                    <input type="radio" class="userRadio" name="loggedUser" id="user2" >
+                                    <input type="radio" class="userRadio" name="loggedUser" id="user3" >
+                                    <div class="choose" onclick="choose(1)">
+                                        <label for="user1"><i class="fa fa-sim-card"></i></label><br>
+                                        <span class="userId"></span><br>
+                                        <span class="userPhoneNumber"></span>
+                                    </div>
+                                    <div class="choose" onclick="choose(2)">
+                                        <label for="user2"><i class="fa fa-sim-card"></i></label><br>
+                                        <span class="userId"></span><br>
+                                        <span class="userPhoneNumber"></span>
+                                    </div>
+                                    <div class="choose" onclick="choose(3)">
+                                        <label for="user3"><i class="fa fa-sim-card"></i></label><br>
+                                        <span class="userId"></span><br>
+                                        <span class="userPhoneNumber"></span>
+                                    </div>                                   
                                 </div> 
                                 <a href="#" class="modalCloseBtn">&times;</a>
                             </div>

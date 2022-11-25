@@ -47,9 +47,12 @@ var displayScreen = document.getElementById("screen");
 var callBtn = document.getElementById("callBtn");
 var modal404 = document.getElementById("modal404");
 var residuo = document.getElementById("residuo");
+var totalCalls = document.getElementById("totalCalls");
+var listUsers = document.querySelectorAll(".userId");
+var listNumbers = document.querySelectorAll(".userPhoneNumber");
 var loggedId = 0;
 var users = [];
-var simCards = 2;
+var simCards = 3;
 var names = ["FirstUser", "SecondUser", "ThirdUser"];
 dialNumber.value = "";
 var interval;
@@ -119,6 +122,15 @@ function updateData() {
     userName.innerHTML = users[loggedId].name;
     lineNumber.innerHTML = users[loggedId].phoneNumber.toString();
     credit.innerHTML = users[loggedId].numero404().toString() + "&euro;";
+    totalCalls.innerHTML = users[loggedId].getNumeroChiamate().toString();
+    for (var i = 0; i < users.length; i++) {
+        listUsers[i].textContent = users[i].name;
+        listNumbers[i].textContent = users[i].phoneNumber.toString();
+    }
+}
+function choose(x) {
+    loggedId = x - 1;
+    updateData();
 }
 function populateApp() {
     return __awaiter(this, void 0, void 0, function () {
@@ -129,7 +141,7 @@ function populateApp() {
                     i = 0;
                     _a.label = 1;
                 case 1:
-                    if (!(i <= simCards)) return [3 /*break*/, 4];
+                    if (!(i < simCards)) return [3 /*break*/, 4];
                     user = new User(Math.floor(Math.random() * 11));
                     user.name = names[i];
                     user.id = i + 1;
@@ -309,6 +321,10 @@ function endCall() {
             }
         });
     });
+}
+function removeCalls() {
+    users[loggedId].azzeraChiamate();
+    updateData();
 }
 /*
 

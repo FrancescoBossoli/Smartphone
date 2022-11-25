@@ -11,9 +11,12 @@ var displayScreen = document.getElementById("screen") as HTMLElement;
 var callBtn = document.getElementById("callBtn") as HTMLElement;
 var modal404 = document.getElementById("modal404") as HTMLElement;
 var residuo = document.getElementById("residuo") as HTMLElement;
+var totalCalls = document.getElementById("totalCalls") as HTMLElement;
+var listUsers = document.querySelectorAll(".userId") as NodeList;
+var listNumbers = document.querySelectorAll(".userPhoneNumber") as NodeList;
 var loggedId:number = 0;
 var users:User[] = [];
-const simCards:number = 2;
+const simCards:number = 3;
 const names:string[] = ["FirstUser", "SecondUser", "ThirdUser"];
 dialNumber.value = "";
 var interval:any;
@@ -49,7 +52,7 @@ class User implements Smartphone {
         this.credito -= (this.tariffa * minutes)
         this.numeroChiamate++
     }
-    public numero404():number {
+    public numero404():any {
         return this.credito.toFixed(2);
     }
     public getNumeroChiamate():number {
@@ -91,10 +94,20 @@ function updateData() {
     userName.innerHTML = users[loggedId].name;
     lineNumber.innerHTML = users[loggedId].phoneNumber.toString();
     credit.innerHTML = users[loggedId].numero404().toString() + "&euro;"
+    totalCalls.innerHTML = users[loggedId].getNumeroChiamate().toString();
+    for (let i = 0; i < users.length; i++) {
+        listUsers[i].textContent = users[i].name;
+        listNumbers[i].textContent = users[i].phoneNumber.toString();
+    }
+}
+
+function choose(x:number) {
+    loggedId = x-1;
+    updateData();
 }
 
 async function populateApp() {
-    for (let i = 0; i <= simCards; i++) {        
+    for (let i = 0; i < simCards; i++) {        
         let user = new User(Math.floor(Math.random()*11));
         user.name = names[i];
         user.id = i + 1;
@@ -232,6 +245,10 @@ async function endCall() {
     timer = 0;
 }
 
+function removeCalls() {
+    users[loggedId].azzeraChiamate();
+    updateData();
+}
 
 
 

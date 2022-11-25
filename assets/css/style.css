@@ -10,11 +10,14 @@ body {
 	height: 100vh;	    
 }
 
+.smartphone, #screen, #desktop, #vodafoneApp {
+    height: 500px;	
+}
+
 .smartphone {	
 	border-color: #444;
 	background-color: #333;
 	width: 300px;
-	height: 500px;	
 	border: 2px solid #bdbdbd;
 	padding: 70px 10px;
 	position: relative;
@@ -30,7 +33,6 @@ body {
 	height: 60px;
 	left: -8px;
 	width: 6px;
-    background-color: #000000;
 	border-radius: 10px 0 0 10px;
 }
 
@@ -59,7 +61,7 @@ body {
 	width: 4px; 
 }
 
-.header-smartphone, .button-smartphone, .screen-smartphone {
+.header-smartphone, .button-smartphone, .screen-smartphone, .modal {
 	position: absolute;
 	left: 0; 
   	right: 0; 
@@ -74,7 +76,6 @@ body {
 
 .speaker-smartphone, .camera-smartphone, .led-smartphone {
 	display: inline-block;
-	background-color: #000000;
 	height: 10px;
 	width: 100px;	
 }
@@ -93,7 +94,6 @@ body {
   	right: 10px; 
   	top: 70px;
   	bottom: 70px;
-	background-color: #000000;
 	border-radius: 5px;
     overflow-y: hidden;    
 }
@@ -104,24 +104,11 @@ body {
   	bottom: 10px;
 	background-color: #222;
 	border: 2px solid #111;
+    cursor:pointer;
 }
 
 .button-smartphone:active {
 	background-color: #1a1a1a;
-}
-
-#power {
-    display: none;
-}
-
-/*    
-background-color: white;
-border: 2px inset grey;
-*/
-#dialerKeyboard {
-    display:flex;
-    flex-direction: column;
-    align-items: center;    
 }
 
 #dialerKeyboard .row {
@@ -182,7 +169,7 @@ border: 2px inset grey;
     transition: all .5s ease-out;
 }
 
-.button:hover {
+.button:hover, .control:hover {
     opacity: 0.5;
 }
 
@@ -200,16 +187,17 @@ border: 2px inset grey;
 
 .controls {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
     padding: 0;
 }
 
-.menu-wrapper {
-    flex: 1;
+.menu-wrapper, .modal {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.menu-wrapper {
+    flex: 1;    
 }
 
 .control {
@@ -224,16 +212,13 @@ border: 2px inset grey;
     transition: all .5s ease-out;
 }
 
-.control:hover {
-    opacity: 0.5;
-}
-
 .menu-wrapper label {
     font-size: 14px;    
     color: #666;
+    cursor: pointer;
 }
 
-input[name="dialerMenu"] {
+#dialerApp, #dialerKeyboard, #dialerCalls, #dialerContacts, #vodafoneApp, #power, input[name="dialerMenu"], input[name="loggedUser"] {
     display:none;
 }
 
@@ -243,40 +228,34 @@ input[name="dialerMenu"] {
 
 #phoneDialer:checked ~ .screen-smartphone label[for="phoneDialer"], #phoneCalls:checked ~ .screen-smartphone label[for="phoneCalls"], #PhoneContacts:checked ~ .screen-smartphone label[for="PhoneContacts"] {
     color: #fff;
-    text-decoration: underline;
+    text-decoration: underline;    
+}
+
+#phoneDialer:checked ~ .screen-smartphone #dialerKeyboard, #phoneCalls:checked ~ .screen-smartphone #dialerCalls, #PhoneContacts:checked ~ .screen-smartphone #dialerContacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    height: 475px;
 }
 
 #dialerApp {
-    display: none;
-    background-color: #000000;
     padding-bottom: 2px;    
 }
 
-#vodafoneApp {
-    display: none;
-}
-
-#screen {
-    height: 500px;
+#screen, #dialerApp, #modal404 .modalContent, .volume-up-smartphone, .volume-down-smartphone, .power-smartphone, .speaker-smartphone, .camera-smartphone, .led-smartphone, .screen-smartphone  {
     background-color: #000000;
 }
 
 #desktop {
-    background: url("../img/pattern.jpg");    
-    height: 500px;
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
+    background: url("../img/pattern.jpg");
+    flex-direction: column;    
 }
 
 #vodafoneApp {
-    background: linear-gradient(180deg, #bb0707 35%, #fff 35%);
-    height: 500px;
+    background: linear-gradient(180deg, #bb0707 35%, #fff 35%);    
 }
 
-.log {
-    display:flex;
-    justify-content: space-between;
+.log {    
     align-items: flex-end;
     padding: 20px 10px;
 }
@@ -295,7 +274,8 @@ input[name="dialerMenu"] {
 .fa-sim-card {
     font-size: 30px;
     font-weight: 600;
-    padding-left: 10px
+    padding-left: 10px;
+    cursor:pointer;
 }
 
 .details {
@@ -315,13 +295,7 @@ input[name="dialerMenu"] {
     border-radius: 10px;
 }
 
-.counters {
-    display: flex;
-    justify-content: space-between;
-    margin-inline: 10px;
-}
-
-.saldo , #ricarica {
+.counters, .saldo , #ricarica {
     margin-inline: 10px;
 }
 
@@ -337,14 +311,8 @@ input[name="dialerMenu"] {
 .modal {
     visibility: hidden;
     opacity: 0;
-    position: absolute;
     top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    bottom: 0;    
     background: rgba(77, 77, 77, .7);
     transition: all .4s;
 }
@@ -381,6 +349,7 @@ input[name="dialerMenu"] {
     text-align: center;
     padding: 10px 2px;
     border-radius: 10px;
+    cursor:pointer;
 }
   
 .modalCloseBtn {
@@ -395,6 +364,7 @@ input[name="dialerMenu"] {
 .icons {
     display: flex;
     flex-direction: row;
+    cursor: pointer;
 }
 
 #dialer, #vodafone{
@@ -407,7 +377,7 @@ input[name="dialerMenu"] {
     margin: 10px;
 }
 
-#dialer i {
+#dialer i, #modal404 .modalContent h3, #residuo, .calls h2, .calls span {
     color: #fff;
 }
 
@@ -423,13 +393,55 @@ input[name="dialerMenu"] {
     background-color: #00bb66;
 }
 
-#modal404 .modalContent{
-    background-color: #000;    
+#modal404 .modalContent{  
     width: 70%;
 }
 
-#modal404 .modalContent h3, #residuo {
-    color:#fff;
+#modal404 .modalContent h3, #residuo, .calls h2, .calls span  {
     font-size: 20px;
     font-weight: 400;
+}
+
+.calls {
+    width: 90%;
+}
+
+.calls h2, .calls span {   
+    font-size: 22px;    
+}
+
+#changeIdModal .modalContent {
+    padding-inline: 18px;
+}
+
+.log, #simOptions, .counters, #desktop, .controls {
+    display:flex;
+    justify-content: space-between;
+}
+
+.choose {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    width: 28%;
+    margin-inline: 5px;
+}
+
+.userId {
+    font-weight: 500;
+}
+
+.choose .fa-sim-card {
+    text-shadow: 2px 2px 20px black;
+    padding: 0;
+}
+
+#user1:checked ~ div > label[for="user1"] > i, #user2:checked ~ div > label[for="user2"] > i, #user3:checked ~ div > label[for="user3"] > i {
+    color: yellow;
+}
+
+#trash {
+    padding-left: 15px;
+    cursor:pointer;
 }
