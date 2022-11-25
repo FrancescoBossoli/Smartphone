@@ -150,7 +150,7 @@ async function updateUser(user:User) {
 
 async function recharge(x:number) {
     users[loggedId].ricarica(x);
-    console.log(users[loggedId].numero404());
+    await updateUser(users[loggedId]);
 }
 
 powerBtn.addEventListener("click", turnScreenOnOff)
@@ -202,7 +202,7 @@ function openApp(app:string) {
     }
 }
 
-function Call() {
+function call() {
     if (timer == 0 && dialNumber.value != "" && dialNumber.value != "404") {        
         dialNumber.value = "";
         interval = setInterval(()=>{            
@@ -245,54 +245,41 @@ async function endCall() {
     timer = 0;
 }
 
-function removeCalls() {
+async function removeCalls() {
     users[loggedId].azzeraChiamate();
+    await updateUser(users[loggedId]);
     updateData();
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 document.addEventListener('DOMContentLoaded', function () {    
     displayTime();
     setInterval(displayTime, 1000);    
   });
   
-  // Clock functions
-  
-  function displayTime () {
+function displayTime () {
     var now = new Date();
     document.getElementById('time')!.innerHTML = now.getHours() + 
       ':' + checkTime(now.getMinutes());
     document.getElementById('date')!.innerHTML = dayString(now);
-  }
+}
   
-  function checkTime (i) {
-      if (i < 10) {
+function checkTime (i) {
+    if (i < 10) {
         i = '0' + i
-      };
-      return i;
-  }
+    }
+    return i;
+}
   
-  function month(month) {
+function month(month) {
     var monthNames = [ 'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
     return monthNames[month];
-  }
+}
   
-  function day(day) {
+function day(day) {
     var dayNames = [ 'Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato' ];
     return dayNames[day];
-  }
+}
     
-  function dayString(date:Date) {
+function dayString(date:Date) {
     return day(date.getDay()) + ', ' + date.getDay() + ' ' + month(date.getMonth()) ;
-  }
+}

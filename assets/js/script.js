@@ -222,9 +222,14 @@ function updateUser(user) {
 function recharge(x) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            users[loggedId].ricarica(x);
-            console.log(users[loggedId].numero404());
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0:
+                    users[loggedId].ricarica(x);
+                    return [4 /*yield*/, updateUser(users[loggedId])];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
         });
     });
 }
@@ -272,7 +277,7 @@ function openApp(app) {
         }
     }
 }
-function Call() {
+function call() {
     if (timer == 0 && dialNumber.value != "" && dialNumber.value != "404") {
         dialNumber.value = "";
         interval = setInterval(function () {
@@ -323,14 +328,24 @@ function endCall() {
     });
 }
 function removeCalls() {
-    users[loggedId].azzeraChiamate();
-    updateData();
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    users[loggedId].azzeraChiamate();
+                    return [4 /*yield*/, updateUser(users[loggedId])];
+                case 1:
+                    _a.sent();
+                    updateData();
+                    return [2 /*return*/];
+            }
+        });
+    });
 }
 document.addEventListener('DOMContentLoaded', function () {
     displayTime();
     setInterval(displayTime, 1000);
 });
-// Clock functions
 function displayTime() {
     var now = new Date();
     document.getElementById('time').innerHTML = now.getHours() +
@@ -341,7 +356,6 @@ function checkTime(i) {
     if (i < 10) {
         i = '0' + i;
     }
-    ;
     return i;
 }
 function month(month) {
