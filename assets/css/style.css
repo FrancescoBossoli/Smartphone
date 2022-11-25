@@ -252,8 +252,21 @@ input[name="dialerMenu"] {
     padding-bottom: 2px;    
 }
 
+#vodafoneApp {
+    display: none;
+}
+
+#screen {
+    height: 500px;
+    background-color: #000000;
+}
+
 #desktop {
-    display: none;      /************************************************************************************************/
+    background: url("../img/pattern.jpg");    
+    height: 500px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #vodafoneApp {
@@ -377,4 +390,46 @@ input[name="dialerMenu"] {
     color: #585858;
     text-decoration: none;
     font-size: 24px;
+}
+
+.icons {
+    display: flex;
+    flex-direction: row;
+}
+
+#dialer, #vodafone{
+    width:40px;
+    height:40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    margin: 10px;
+}
+
+#dialer i {
+    color: #fff;
+}
+
+#vodafonePic {    
+    width: 50%
+} 
+
+#vodafone{
+    background-color: #bb0000;
+}
+
+#dialer {
+    background-color: #00bb66;
+}
+
+#modal404 .modalContent{
+    background-color: #000;    
+    width: 70%;
+}
+
+#modal404 .modalContent h3, #residuo {
+    color:#fff;
+    font-size: 20px;
+    font-weight: 400;
 }

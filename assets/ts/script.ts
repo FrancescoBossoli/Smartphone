@@ -3,14 +3,21 @@ var display = document.querySelector(".screen-smartphone") as HTMLElement;
 var dialNumber = document.getElementById("dialNumber") as HTMLInputElement;
 var dialerApp = document.getElementById("dialerApp") as HTMLElement;
 var vodafoneApp = document.getElementById("vodafoneApp") as HTMLElement;
+var desktop = document.getElementById("desktop") as HTMLElement;
 var userName = document.getElementById("username") as HTMLElement;
 var lineNumber = document.getElementById("phoneNumber") as HTMLElement;
 var credit = document.getElementById("credito") as HTMLElement;
+var displayScreen = document.getElementById("screen") as HTMLElement;
+var callBtn = document.getElementById("callBtn") as HTMLElement;
+var modal404 = document.getElementById("modal404") as HTMLElement;
+var residuo = document.getElementById("residuo") as HTMLElement;
 var loggedId:number = 0;
 var users:User[] = [];
 const simCards:number = 2;
 const names:string[] = ["FirstUser", "SecondUser", "ThirdUser"];
 dialNumber.value = "";
+var interval:any;
+var timer:number = 0;
 
 interface Smartphone {
     credito:number;
@@ -25,7 +32,7 @@ interface Smartphone {
 class User implements Smartphone {
     public credito:number
     public numeroChiamate:number
-    private tariffa:number = 0.20
+    public tariffa:number = 0.20
     public name:string
     public id:number
     public phoneNumber:number
@@ -43,7 +50,7 @@ class User implements Smartphone {
         this.numeroChiamate++
     }
     public numero404():number {
-        return this.credito
+        return this.credito.toFixed(2);
     }
     public getNumeroChiamate():number {
         return this.numeroChiamate
@@ -77,10 +84,13 @@ function useData(array) {
         users[i].credito = array[i].credito;
         users[i].numeroChiamate = array[i].numeroChiamate;
     }
+    updateData();
+}
+
+function updateData() {
     userName.innerHTML = users[loggedId].name;
     lineNumber.innerHTML = users[loggedId].phoneNumber.toString();
-    credit.innerHTML = users[loggedId].numero404().toString() + "&euro;";
-
+    credit.innerHTML = users[loggedId].numero404().toString() + "&euro;"
 }
 
 async function populateApp() {
@@ -115,20 +125,29 @@ async function deletePlaceholder() {
 	});   
 }
 
+async function updateUser(user:User) {
+    let response = await fetch('http://localhost:3000/users/' + user.id, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8',
+		},
+		body: JSON.stringify(user)
+	});   
+}
+
 async function recharge(x:number) {
     users[loggedId].ricarica(x);
     console.log(users[loggedId].numero404());
 }
 
-
 powerBtn.addEventListener("click", turnScreenOnOff)
 
 function turnScreenOnOff() {
     if (powerBtn.checked) {
-        display.style.backgroundColor = "#fff";
+        displayScreen.style.display = "none";
         display.style.border = "2px inset grey";
     } else {
-        display.style.backgroundColor = "#000";
+        displayScreen.style.display = "block";
         display.style.border = "none";
     }
 }
@@ -150,11 +169,68 @@ function displayHome():void {
     }    
 }
 
+function openApp(app:string) {
+    if (powerBtn.checked) {
+        dialerApp.style.display = "none";
+        vodafoneApp.style.display = "none";
+        desktop.style.display = "none";
+        if (app == "dialer") {
+            dialerApp.style.display = "block";
+            display.style.border = "none";
+        }
+        else if (app == "vodafone") {
+            vodafoneApp.style.display = "block";
+            display.style.border = "2px inset grey";
+        }
+        else {            
+                desktop.style.display = "flex";
+                display.style.border = "2px inset grey";            
+        }
+    }
+}
 
+function Call() {
+    if (timer == 0 && dialNumber.value != "" && dialNumber.value != "404") {        
+        dialNumber.value = "";
+        interval = setInterval(()=>{            
+            timer += 1;
+            if ((users[loggedId].numero404() / users[loggedId].tariffa) <= Math.ceil(timer/60)) {
+                clearInterval(interval);
+                endCall();
+            }
+        }, 1000);
+        checkCredit();
+        callBtn.style.backgroundColor = "red";
+    }
+    else if (dialNumber.value == "404") {
+        modal404.style.visibility = "visible";
+        modal404.style.opacity = "1";
+        residuo.innerHTML = users[loggedId].numero404() + "&euro;";        
+        setTimeout(()=> {
+            modal404.style.visibility = "hidden";
+            modal404.style.opacity = "0"; 
+        }, 2000);       
+    }
+    else {
+        callBtn.style.backgroundColor = "#00bb66"
+        endCall();
+    }    
+}
 
+function checkCredit() {
+    if (users[loggedId].numero404() <= 0) {
+        endCall(); 
+    }
+}
 
-
-
+async function endCall() {
+    callBtn.style.backgroundColor = "#00bb66";
+    clearInterval(interval);
+    users[loggedId].chiamata(Math.ceil(timer/60));
+    await updateUser(users[loggedId]);
+    updateData();
+    timer = 0;
+}
 
 
 

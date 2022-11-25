@@ -27,8 +27,13 @@
             <input type="radio" name="dialerMenu" id="phoneCalls">
             <input type="radio" name="dialerMenu" id="PhoneContacts">
             <div class="screen-smartphone">
+                <div id="screen"></div>
                 <div id="desktop">
-
+                    <div id="watch">time</div>
+                    <div class="icons">
+                        <div id="dialer" onclick="openApp('dialer')"><i class="fa fa-phone"></i></div>
+                        <div id="vodafone" onclick="openApp('vodafone')"><img id="vodafonePic" src="assets/img/vodafone-white.png" alt="Vodafone"></div>
+                    </div>
                 </div>
                 <div id="dialerApp">
                     <div id="dialerKeyboard">
@@ -97,10 +102,15 @@
                                         <span></span>
                                     </div>
                                     <div class="button">
-                                        <span><i class="fa fa-phone circle-icon" id="call"></i></span>
+                                        <span><i class="fa fa-phone circle-icon" id="callBtn" onclick="Call()"></i></span>
                                     </div>
                                     <div class="button" id="delete">
                                         <span onclick="deleteCharacter()"><i class="fa fa-delete-left"></i></span>
+                                    </div>
+                                </div>
+                                <div id="modal404" class="modal">
+                                    <div class="modalContent">
+                                        <h3>Credito residuo: <span id="residuo"></span></h3>
                                     </div>
                                 </div>
                             </div>
@@ -150,10 +160,7 @@
                                     <div class="charge" onclick="recharge(10)">10€</div>
                                     <div class="charge" onclick="recharge(15)">15€</div>        
                                     <div class="charge" onclick="recharge(25)">25€</div>
-                                </div>
-                                
-                                
-                        
+                                </div> 
                                 <a href="#" class="modalCloseBtn">&times;</a>
                             </div>
                         </div>
@@ -163,7 +170,7 @@
                     </div>
                 </div>           
             </div>
-        <div class="button-smartphone" onclick="displayHome()"></div>
+        <div class="button-smartphone" onclick="openApp('home')"></div>
     </div>
     <script src="assets/js/script.js"></script>
 </body>
