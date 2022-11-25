@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/all.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Smartphone</title>
+</head>
+<body>
+    <div id="container">
+        <div class="smartphone">
+            <input type="checkbox" id="power">
+            <div class="volume-up-smartphone"></div>
+            <div class="volume-down-smartphone"></div>
+            <label class="power-smartphone" for="power"></label>
+            <div class="header-smartphone">
+                <div class="camera-smartphone"></div>
+                <div class="speaker-smartphone"></div>
+                <div class="led-smartphone"></div>
+            </div>
+            <input type="radio" name="dialerMenu" id="phoneDialer" checked>
+            <input type="radio" name="dialerMenu" id="phoneCalls">
+            <input type="radio" name="dialerMenu" id="PhoneContacts">
+            <div class="screen-smartphone">
+                <div id="desktop">
+
+                </div>
+                <div id="dialerApp">
+                    <div id="dialerKeyboard">
+                        <div class="dialer-title">
+                            <h2>Telefono</h2>
+                        </div>
+                        <div class="dialer">
+                            <input type="text" id="dialNumber" readonly></input>
+                            <div class="keyboard">
+                                <div class="row">
+                                    <div class="button">
+                                        <span onclick="writeDigit(1)">1</span>
+                                        <small><i class="fa fa-voicemail"></i></small>
+                                    </div>
+                                    <div class="button">
+                                        <span onclick="writeDigit(2)">2</span>
+                                        <small>ABC</small>
+                                    </div>
+                                    <div class="button">
+                                        <span onclick="writeDigit(3)">3</span>
+                                        <small>DEF</small>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="button">
+                                        <span onclick="writeDigit(4)">4</span>
+                                        <small>GHI</small>
+                                    </div>
+                                    <div class="button">
+                                        <span onclick="writeDigit(5)">5</span>
+                                        <small>JKL</small>
+                                    </div>
+                                    <div class="button">
+                                        <span onclick="writeDigit(6)">6</span>
+                                        <small>MNO</small>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="button">
+                                        <span onclick="writeDigit(7)">7</span>
+                                        <small>PQRS</small>
+                                    </div>
+                                    <div class="button">
+                                        <span onclick="writeDigit(8)">8</span>
+                                        <small>TUV</small>
+                                    </div>
+                                    <div class="button">
+                                        <span onclick="writeDigit(9)">9</span>
+                                        <small>WXYZ</small>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="button">
+                                        <span onclick="writeDigit('*')">*</span>
+                                    </div>
+                                    <div class="button">
+                                        <span onclick="writeDigit(0)">0</span>
+                                        <small>+</small>
+                                    </div>
+                                    <div class="button">
+                                        <span onclick="writeDigit('#')">#</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="button">
+                                        <span></span>
+                                    </div>
+                                    <div class="button">
+                                        <span><i class="fa fa-phone circle-icon" id="call"></i></span>
+                                    </div>
+                                    <div class="button" id="delete">
+                                        <span onclick="deleteCharacter()"><i class="fa fa-delete-left"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="menu-wrapper">
+                            <label for="phoneDialer">Tastiera</label>
+                        </div>
+                        <div class="menu-wrapper">
+                            <label for="phoneCalls">Registro</label>
+                        </div>
+                        <div class="menu-wrapper">
+                            <label for="PhoneContacts">Rubrica</label>
+                        </div>
+                    </div>                        
+                </div>
+                <div id="vodafoneApp">
+                    <div class="log">
+                        <div>
+                            <img id="logo" src="assets/img/vodafone_icon.png" alt="Vodafone">
+                        </div>
+                        <div class="user">
+                            <div class="details">
+                                <h3 id="username">Tizio</h3>
+                                <h3 id="phoneNumber">3333333333</h3>
+                            </div>
+                            <div class="switch">
+                                <i class="fa fa-sim-card" ></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tariffa"><b>Piano tariffario corrente:</b> <br><small>Chiamate a 20 centesimi al minuto</small> </div>
+                    <div class="counters">
+                        <div class="saldo"><i class="fa fa-coins"></i><b> Saldo</b><br>
+                            <small id="credito">22€</small>
+                        </div>
+                        <a id="ricarica" href="#chargeModal"><i class="fa fa-charging-station"></i> <b>Ricarica</b><br>
+                            <small>Richiedila ora</small>
+                        </a>
+                                                
+                        <div id="chargeModal" class="modal">
+                            <div class="modalContent">
+                                <h3>Scegli il taglio che preferisci</h3>
+                                <div id="choices">
+                                    <div class="charge" onclick="recharge(5)">5€</div>
+                                    <div class="charge" onclick="recharge(10)">10€</div>
+                                    <div class="charge" onclick="recharge(15)">15€</div>        
+                                    <div class="charge" onclick="recharge(25)">25€</div>
+                                </div>
+                                
+                                
+                        
+                                <a href="#" class="modalCloseBtn">&times;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="happy"><i class="fa fa-gift"></i> <b>Il nuovo Vodafone Happy</b><br>
+                        <small>Accumula i sorrisi e scopri un milione di regali pensati apposta per te!</small> 
+                    </div>
+                </div>           
+            </div>
+        <div class="button-smartphone" onclick="displayHome()"></div>
+    </div>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
