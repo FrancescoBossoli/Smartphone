@@ -445,3 +445,23 @@ body {
     padding-left: 15px;
     cursor:pointer;
 }
+
+#desktop > div:first-of-type {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+
+}
+
+#time, #date {
+    color: rgb(173, 17, 103);
+    text-shadow: 1px 1px 6px black;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+#time {
+    font-size: 42px;
+}

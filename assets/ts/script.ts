@@ -258,17 +258,13 @@ function removeCalls() {
 
 
 
-/*
+
 
 
 
 document.addEventListener('DOMContentLoaded', function () {    
     displayTime();
-    setInterval(displayTime, 1000);
-    // Listen to lock click
-    document.getElementById('lock')!.addEventListener('click', function () {
-      document.getElementById('lock')!.classList.add()
-    });
+    setInterval(displayTime, 1000);    
   });
   
   // Clock functions
@@ -287,17 +283,16 @@ document.addEventListener('DOMContentLoaded', function () {
       return i;
   }
   
-  function month (month) {
+  function month(month) {
     var monthNames = [ 'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
     return monthNames[month];
   }
   
-  function day (day) {
+  function day(day) {
     var dayNames = [ 'Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato' ];
     return dayNames[day];
   }
     
-  function dayString (day) {
-    return day(day.getDay()) + ', ' + month(day.getMonth()) + ' ' + day.getDay();
+  function dayString(date:Date) {
+    return day(date.getDay()) + ', ' + date.getDay() + ' ' + month(date.getMonth()) ;
   }
-  */

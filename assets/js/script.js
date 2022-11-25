@@ -326,46 +326,32 @@ function removeCalls() {
     users[loggedId].azzeraChiamate();
     updateData();
 }
-/*
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
     displayTime();
     setInterval(displayTime, 1000);
-    // Listen to lock click
-    document.getElementById('lock')!.addEventListener('click', function () {
-      document.getElementById('lock')!.classList.add()
-    });
-  });
-  
-  // Clock functions
-  
-  function displayTime () {
+});
+// Clock functions
+function displayTime() {
     var now = new Date();
-    document.getElementById('time')!.innerHTML = now.getHours() +
-      ':' + checkTime(now.getMinutes());
-    document.getElementById('date')!.innerHTML = dayString(now);
-  }
-  
-  function checkTime (i) {
-      if (i < 10) {
-        i = '0' + i
-      };
-      return i;
-  }
-  
-  function month (month) {
-    var monthNames = [ 'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
+    document.getElementById('time').innerHTML = now.getHours() +
+        ':' + checkTime(now.getMinutes());
+    document.getElementById('date').innerHTML = dayString(now);
+}
+function checkTime(i) {
+    if (i < 10) {
+        i = '0' + i;
+    }
+    ;
+    return i;
+}
+function month(month) {
+    var monthNames = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
     return monthNames[month];
-  }
-  
-  function day (day) {
-    var dayNames = [ 'Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato' ];
+}
+function day(day) {
+    var dayNames = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
     return dayNames[day];
-  }
-    
-  function dayString (day) {
-    return day(day.getDay()) + ', ' + month(day.getMonth()) + ' ' + day.getDay();
-  }
-  */ 
+}
+function dayString(date) {
+    return day(date.getDay()) + ', ' + date.getDay() + ' ' + month(date.getMonth());
+}
