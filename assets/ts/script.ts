@@ -281,5 +281,5 @@ function day(day) {
 }
     
 function dayString(date:Date) {
-    return day(date.getDay()) + ', ' + date.getDay() + ' ' + month(date.getMonth()) ;
+    return day(date.getDay()) + ', ' + date.getDate() + ' ' + month(date.getMonth()) ;
 }

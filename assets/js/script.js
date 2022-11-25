@@ -367,5 +367,5 @@ function day(day) {
     return dayNames[day];
 }
 function dayString(date) {
-    return day(date.getDay()) + ', ' + date.getDay() + ' ' + month(date.getMonth());
+    return day(date.getDay()) + ', ' + date.getDate() + ' ' + month(date.getMonth());
 }
